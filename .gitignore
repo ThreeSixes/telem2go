@@ -1,2 +1,6 @@
+# Python assets
 **/*.pyc
 **/__pycache__
+
+# VS Code
+*.code-workspace
