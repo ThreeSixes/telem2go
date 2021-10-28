@@ -1,3 +1,4 @@
+from functools import lru_cache
 import math
 from pprint import pprint
 
@@ -126,6 +127,7 @@ class AdsbCrc:
     ADS-B CRC funcitons
     """
 
+    @lru_cache(1)
     def compute_crc_table():
         """
         Create CRC value table for improved CRC computation performance.
