@@ -73,54 +73,6 @@ class Slicer:
 
         return slices
 
- 
-    @staticmethod
-    def old_slice_bin(bin_data, chunks):
-        """
-        Slice a binary string into smaller binary chunks given binary data and a list of chunk boundaries.
-        """
-
-        slices = []
-
-        for chunk in chunks:
-            chunk_start = chunk[0]
-            chunk_end = chunk[1]
-
-            # Construct bytes object to hold our chunk.
-            chunk_bytes_required = math.ceil((chunk_end - chunk_start) / 8)
-            this_chunk = bytearray(chunk_bytes_required)
-
-            # Byte offset start and end for loop.
-            chunk_offset_start = math.floor(chunk_start / 8)
-            chunk_offset_end = math.ceil(chunk_end / 8)
-
-            chunk_byte_cursor = 0
-
-            # Loop thorugh the bytes in the binary data containing interesting data.
-            for interesting_byte_index in range(chunk_offset_start, chunk_offset_end):
-                # Get the current byte we want to manipulate
-                interesting_byte = bin_data[interesting_byte_index]
-
-                # Figure out where we are in our number line.
-                byte_boundary_start = interesting_byte_index * 8
-                byte_boundary_end = byte_boundary_start + 7
-                bit_stop_in_byte = ((8 + (byte_boundary_start - chunk_start)) % 8) + 1
-
-                # Figoure out the parameters we need to operate against our byte.
-                shift_right = 8 - ((byte_boundary_end + chunk_end) % 8) - 1
-                and_mask = int(2 ** abs(shift_right - bit_stop_in_byte)) - 1
-
-                # Get the byte we want.
-                this_chunk[chunk_byte_cursor] = (interesting_byte >> shift_right) & and_mask
-
-                # Increment the chunk byte cursor.
-                chunk_byte_cursor += 1
-
-            # Tack our byte array onto the slice.
-            slices.append(this_chunk)
-
-        return slices
-
 
 class AdsbCrc:
     """
