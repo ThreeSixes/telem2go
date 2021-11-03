@@ -1,5 +1,5 @@
 """
-This file is part of Flextelem. Its purpose is to support decoding ADS-B frames.
+This file is part of telem2go. Its purpose is to support decoding ADS-B frames.
 https://mode-s.org/decode/index.html
 """
 

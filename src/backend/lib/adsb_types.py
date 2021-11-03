@@ -1,3 +1,7 @@
+"""
+This file is part of telem2go. This file stores decoders.
+"""
+
 import math
 
 from .util import AdsbCrc
