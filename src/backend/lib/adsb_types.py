@@ -7,6 +7,7 @@ import math
 from .util import AdsbCrc
 from .util import Slicer
 
+
 class AirbornePosition(dict):
     """
     ADS-B airborne position
